@@ -10,83 +10,14 @@ import createSagaMiddleWare from 'redux-saga';
 import {takeEvery, put} from 'redux-saga/effects';
 import 'localstorage-polyfill';
 import {NavigationContainer} from '@react-navigation/native';
+import {categories, products} from './components/staticData';
 
 const initialState = {
   screen: 0,
   userData: null,
   shownProduct: null,
-  categories: [
-    {id: 1, name: 'Shirts'},
-    {id: 2, name: 'Shoes'},
-    {id: 3, name: 'Hats'},
-  ],
-  products: [
-    {
-      id: 1,
-      category_id: 1,
-      name: 'Short Sleeve T-Shirt',
-      price: '10.99',
-      description: 'This is a product description',
-      reviews: [],
-    },
-    {
-      id: 2,
-      category_id: 1,
-      name: 'Medium Sleeve T-Shirt',
-      price: '11.99',
-      description: 'This is a product description',
-      reviews: [],
-    },
-    {
-      id: 3,
-      category_id: 1,
-      name: 'Long Sleeve T-Shirt',
-      price: '12.99',
-      description: 'This is a product description',
-      reviews: [],
-    },
-    {
-      id: 4,
-      category_id: 2,
-      name: 'Nike Trainers',
-      price: '120.99',
-      description: 'This is a product description',
-      reviews: [],
-    },
-    {
-      id: 5,
-      category_id: 2,
-      name: 'Puma Trainers',
-      price: '130.99',
-      description: 'This is a product description',
-      reviews: [],
-    },
-    {id: 6, category_id: 2, name: 'Sandals', price: '4.99', description: 'This is a product description', reviews: []},
-    {
-      id: 7,
-      category_id: 3,
-      name: 'Hat Tall',
-      price: '14.99',
-      description: 'This is a product description',
-      reviews: [],
-    },
-    {
-      id: 8,
-      category_id: 3,
-      name: 'Hat Grande',
-      price: '15.99',
-      description: 'This is a product description',
-      reviews: [],
-    },
-    {
-      id: 9,
-      category_id: 3,
-      name: 'Hat Venti',
-      price: '16.99',
-      description: 'This is a product description',
-      reviews: [],
-    },
-  ]
+  categories: categories,
+  products: products
 };
 
 function* loginAsync(action) {

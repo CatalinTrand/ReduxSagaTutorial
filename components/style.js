@@ -90,5 +90,27 @@ export default {
   list_item: {
     paddingLeft: 30,
     fontWeight: 400
+  },
+  product_title: {
+    padding: 10,
+    paddingBottom: 0,
+    marginTop: 20,
+    fontSize: 24
+  },
+  product_price: {
+    fontWeight: 'bold',
+    padding: 10,
+    paddingTop: 0,
+    fontSize: 20
+  },
+  product_description: {
+    padding: 10,
+    marginBottom: 20,
+    fontSize: 18
+  },
+  profile_text: {
+    fontSize: 22,
+    paddingLeft: 15,
+    paddingBottom: 10
   }
 };

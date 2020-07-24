@@ -19,7 +19,7 @@ class RenderContent extends React.Component {
       case 2:
         return <Dashboard dispatch={this.props.dispatch} userData={this.props.userData} categories={this.props.categories} products={this.props.products}/>;
       case 3:
-        return <ProductDetails dispatch={this.props.dispatch} shownProduct={this.props.shownProduct} />;
+        return <ProductDetails dispatch={this.props.dispatch} userData={this.props.userData} shownProduct={this.props.shownProduct} />;
       default:
         return <Login dispatch={this.props.dispatch} />;
     }

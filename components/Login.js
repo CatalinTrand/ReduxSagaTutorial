@@ -4,8 +4,8 @@ import {
 } from 'react-native';
 import {connect} from "react-redux";
 import {Text, TextInput} from 'react-native';
-import styles from "./style";
 import {Button} from 'react-native-elements';
+import styles from "./style";
 
 class Login extends React.Component {
 

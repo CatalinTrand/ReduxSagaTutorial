@@ -4,13 +4,10 @@ import {
   View,
   Text,
 } from 'react-native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Profile from './Profile';
 import ProductList from './ProductList';
 import styles from "./style";
 
-const Tab = createBottomTabNavigator();
 
 class Dashboard extends React.Component {
 
@@ -25,10 +22,10 @@ class Dashboard extends React.Component {
     return (
       <View>
         <View style={styles.tab_nav}>
-          <View style={this.state.showingList ? styles.nav_btn_highlight : styles.nav_btn } onPress={(e) => {this.setState({showingList: true})}}>
+          <View style={this.state.showingList ? styles.nav_btn_highlight : styles.nav_btn } onStartShouldSetResponder={(e) => { this.setState({showingList: true} )}}>
             <Text style={styles.nav_btn_text}>Products</Text>
           </View>
-          <View style={!this.state.showingList ? styles.nav_btn_highlight : styles.nav_btn } onPress={(e) => {this.setState({showingList: false})}}>
+          <View style={!this.state.showingList ? styles.nav_btn_highlight : styles.nav_btn } onStartShouldSetResponder={(e) => { this.setState({showingList: false} )}}>
             <Text style={styles.nav_btn_text}>Profile</Text>
           </View>
         </View>
