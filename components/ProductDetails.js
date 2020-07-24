@@ -1,4 +1,6 @@
 import React from 'react';
+import {Text, View} from 'react-native';
+import {Button} from 'react-native-elements';
 
 class ProductDetails extends React.Component {
 

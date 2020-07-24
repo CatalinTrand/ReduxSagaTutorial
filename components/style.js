@@ -54,5 +54,41 @@ export default {
     width: '100%',
     textAlign: 'center',
     fontSize: 16
+  },
+  tab_nav: {
+    width: '100%',
+    height: 80,
+    marginBottom: 10,
+    display: 'flex',
+    flexDirection: 'row'
+  },
+  nav_btn: {
+    width: '50%',
+    height: '100%',
+    padding: 10,
+    border: '2px solid black',
+    backgroundColor: 'gray',
+    color: '#2bd6f1'
+  },
+  nav_btn_highlight: {
+    width: '50%',
+    height: '100%',
+    padding: 10,
+    border: '2px solid black',
+    backgroundColor: '#2bd6f1',
+    color: 'black'
+  },
+  nav_btn_text: {
+    fontSize: 22,
+    textAlign: 'center',
+    paddingTop: 14,
+  },
+  list_header: {
+    fontWeight: 700,
+    fontSize: 20
+  },
+  list_item: {
+    paddingLeft: 30,
+    fontWeight: 400
   }
 };

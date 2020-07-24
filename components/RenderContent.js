@@ -6,6 +6,7 @@ import {connect} from "react-redux";
 import Login from './Login';
 import Register from './Register';
 import Dashboard from './Dashboard';
+import ProductDetails from './ProductDetails';
 
 class RenderContent extends React.Component {
 
@@ -18,7 +19,7 @@ class RenderContent extends React.Component {
       case 2:
         return <Dashboard dispatch={this.props.dispatch} userData={this.props.userData} categories={this.props.categories} products={this.props.products}/>;
       case 3:
-        return <ProductDetails dispatch={this.props.dispatch} shownProduct={this.props.shownProduct} />
+        return <ProductDetails dispatch={this.props.dispatch} shownProduct={this.props.shownProduct} />;
       default:
         return <Login dispatch={this.props.dispatch} />;
     }

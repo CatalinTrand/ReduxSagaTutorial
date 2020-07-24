@@ -3,6 +3,9 @@ import {
   View,
 } from 'react-native';
 import {connect} from "react-redux";
+import {Text, TextInput} from 'react-native';
+import styles from "./style";
+import {Button} from 'react-native-elements';
 
 class Login extends React.Component {
 
@@ -34,12 +37,11 @@ class Login extends React.Component {
   render() {
     return (
       <View>
-        <Text>Login</Text>
         <TextInput
           placeholder="Email"
           placeholderColor="#c4c3cb"
           style={styles.loginFormTextInput}
-          onChangeText={(e) => this.handleChange(e,'e')}
+          onChangeText={(e) => this.handleChange(e,'u')}
           value={this.state.email}
         />
         <TextInput

@@ -3,83 +3,162 @@ import {
   SafeAreaView,
   StatusBar,
 } from 'react-native';
-import {createStore, applyMiddleware } from 'redux';
+import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
 import RenderContent from './components/RenderContent';
 import createSagaMiddleWare from 'redux-saga';
-import { takeEvery, put} from "redux-saga/effects";
+import {takeEvery, put} from 'redux-saga/effects';
+import 'localstorage-polyfill';
+import {NavigationContainer} from '@react-navigation/native';
 
 const initialState = {
   screen: 0,
   userData: null,
   shownProduct: null,
   categories: [
-    { id: 1, name: "Shirts" },
-    { id: 2, name: "Shoes" },
-    { id: 3, name: "Hats" }
+    {id: 1, name: 'Shirts'},
+    {id: 2, name: 'Shoes'},
+    {id: 3, name: 'Hats'},
   ],
   products: [
-    { id: 1, category_id: 1, name: "Short Sleeve T-Shirt", price: "10.99", description: "This is a product description", reviews: [] },
-    { id: 2, category_id: 1, name: "Medium Sleeve T-Shirt", price: "11.99", description: "This is a product description", reviews: [] },
-    { id: 3, category_id: 1, name: "Long Sleeve T-Shirt", price: "12.99", description: "This is a product description", reviews: [] },
-    { id: 4, category_id: 2, name: "Nike Trainers", price: "120.99", description: "This is a product description", reviews: [] },
-    { id: 5, category_id: 2, name: "Puma Trainers", price: "130.99", description: "This is a product description", reviews: [] },
-    { id: 6, category_id: 2, name: "Sandals", price: "4.99", description: "This is a product description", reviews: [] },
-    { id: 7, category_id: 3, name: "Hat Tall", price: "14.99", description: "This is a product description", reviews: [] },
-    { id: 8, category_id: 3, name: "Hat Grande", price: "15.99", description: "This is a product description", reviews: [] },
-    { id: 9, category_id: 3, name: "Hat Venti", price: "16.99", description: "This is a product description", reviews: [] },
+    {
+      id: 1,
+      category_id: 1,
+      name: 'Short Sleeve T-Shirt',
+      price: '10.99',
+      description: 'This is a product description',
+      reviews: [],
+    },
+    {
+      id: 2,
+      category_id: 1,
+      name: 'Medium Sleeve T-Shirt',
+      price: '11.99',
+      description: 'This is a product description',
+      reviews: [],
+    },
+    {
+      id: 3,
+      category_id: 1,
+      name: 'Long Sleeve T-Shirt',
+      price: '12.99',
+      description: 'This is a product description',
+      reviews: [],
+    },
+    {
+      id: 4,
+      category_id: 2,
+      name: 'Nike Trainers',
+      price: '120.99',
+      description: 'This is a product description',
+      reviews: [],
+    },
+    {
+      id: 5,
+      category_id: 2,
+      name: 'Puma Trainers',
+      price: '130.99',
+      description: 'This is a product description',
+      reviews: [],
+    },
+    {id: 6, category_id: 2, name: 'Sandals', price: '4.99', description: 'This is a product description', reviews: []},
+    {
+      id: 7,
+      category_id: 3,
+      name: 'Hat Tall',
+      price: '14.99',
+      description: 'This is a product description',
+      reviews: [],
+    },
+    {
+      id: 8,
+      category_id: 3,
+      name: 'Hat Grande',
+      price: '15.99',
+      description: 'This is a product description',
+      reviews: [],
+    },
+    {
+      id: 9,
+      category_id: 3,
+      name: 'Hat Venti',
+      price: '16.99',
+      description: 'This is a product description',
+      reviews: [],
+    },
   ]
 };
 
-function* loginAsync(action){
+function* loginAsync(action) {
   let user_list = JSON.parse(localStorage.getItem('user_list'));
+  if (user_list == null) {
+    user_list = [];
+  }
   let correctUser = false;
-  user_list.forEach((user => user.username == action.username && user.password == action.password ? correctUser = true : correctUser = correctUser ));
-  if(correctUser)
-    yield put({type: "AUTHENTICATE_ASYNC", userData: action});
+  user_list.forEach((user => user.username == action.username && user.password == action.password ? correctUser = true : correctUser = correctUser));
+  if (correctUser) {
+    yield put({type: 'AUTHENTICATE_ASYNC', userData: action});
+  }
 }
 
-function* registerAsync(action){
-  let user_list = JSON.parse(localStorage.getItem('user_list'), []);
+function* registerAsync(action) {
+  let user_list = JSON.parse(localStorage.getItem('user_list'));
+  if (user_list == null) {
+    user_list = [];
+  }
   let usernameExists = false;
-  user_list.forEach((user => user.username == action.username ? usernameExists = true : usernameExists = usernameExists ));
-  if(usernameExists)
+  user_list.forEach((user => user.username == action.username ? usernameExists = true : usernameExists = usernameExists));
+  if (usernameExists) {
     return;
+  }
 
-  user_list.push({ username: action.username, password: action.password });
-  localStorage.setItem('user_list', JSON.encode(user_list));
+  user_list.push({username: action.username, password: action.password});
+  localStorage.setItem('user_list', JSON.stringify(user_list));
 
-  yield put({type: "AUTHENTICATE_ASYNC", userData: { username: action.username, password: action.password } });
+  yield put({type: 'AUTHENTICATE_ASYNC', userData: {username: action.username, password: action.password}});
 }
 
-function* watchLogin(){
-  yield takeEvery("LOGIN", loginAsync);
+function* watchLogin() {
+  yield takeEvery('LOGIN', loginAsync);
 }
 
-function* watchRegister(){
-  yield takeEvery("REGISTER", registerAsync);
+function* watchRegister() {
+  yield takeEvery('REGISTER', registerAsync);
 }
 
 function reducer(state = initialState, action) {
   switch (action.type) {
     case 'LOGIN_INSTEAD':
       return {
-        screen: 0
+        screen: 0,
+        userData: null,
+        shownProduct: null,
+        categories: state.categories,
+        products: state.products
       };
     case 'REGISTER_INSTEAD':
       return {
-        screen: 1
+        screen: 1,
+        userData: null,
+        shownProduct: null,
+        categories: state.categories,
+        products: state.products
       };
     case 'AUTHENTICATE_ASYNC':
       return {
-        shownProduct: null,
+        screen: 2,
         userData: action.userData,
-        screen: 2
+        shownProduct: null,
+        categories: state.categories,
+        products: state.products
       };
     case 'DISPLAY_PRODUCT':
       return {
+        screen: 3,
+        userData: state.userData,
         shownProduct: action.shownProduct,
-        screen: 3
+        categories: state.categories,
+        products: state.products
       };
     default:
       return state;
@@ -94,12 +173,14 @@ sagaMiddleware.run(watchRegister);
 
 const App: () => React$Node = () => {
   return (
-    <Provider store={store}>
-      <StatusBar barStyle="dark-content"/>
-      <SafeAreaView>
-        <RenderContent/>
-      </SafeAreaView>
-    </Provider>
+    <NavigationContainer>
+      <Provider store={store}>
+        <StatusBar barStyle="dark-content"/>
+        <SafeAreaView>
+          <RenderContent/>
+        </SafeAreaView>
+      </Provider>
+    </NavigationContainer>
   );
 };
 
