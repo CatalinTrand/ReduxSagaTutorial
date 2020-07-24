@@ -112,5 +112,32 @@ export default {
     fontSize: 22,
     paddingLeft: 15,
     paddingBottom: 10
+  },
+  reviews_title: {
+    fontSize: 20,
+    paddingLeft: 10
+  },
+  reviews_box: {
+    borderTopColor: 'black',
+    borderTopWidth: 1,
+    marginTop: 10
+  },
+  review: {
+    padding: 10,
+    borderBottomColor: 'black',
+    borderBottomWidth: 1,
+    marginBottom: 10
+  },
+  review_name: {
+    fontSize: 20,
+    fontStyle: 'italic'
+  },
+  review_comment: {
+    fontSize: 18
+  },
+  review_btn: {
+    paddingLeft: 10,
+    marginBottom: 20,
+    width: 200
   }
 };

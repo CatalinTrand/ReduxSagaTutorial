@@ -8,7 +8,7 @@ import {Provider} from 'react-redux';
 import RenderContent from './components/RenderContent';
 import createSagaMiddleWare from 'redux-saga';
 import {takeEvery, put} from 'redux-saga/effects';
-import 'localstorage-polyfill';
+import SyncStorage from 'sync-storage';
 import {NavigationContainer} from '@react-navigation/native';
 import {categories, products} from './components/staticData';
 
@@ -20,31 +20,47 @@ const initialState = {
   products: products
 };
 
+async function initStorage(){
+  const data = await SyncStorage.init();
+  console.log('AsyncStorage is ready!');
+}
+
 function* loginAsync(action) {
-  let user_list = JSON.parse(localStorage.getItem('user_list'));
-  if (user_list == null) {
-    user_list = [];
-  }
+  const user_list = SyncStorage.get('user_list');
+  let userList = [];
+
+  console.log("login: ");
+  console.log(user_list);
+
+  if (user_list != null && user_list !== undefined)
+    userList = JSON.parse(user_list);
+
   let correctUser = false;
-  user_list.forEach((user => user.username == action.username && user.password == action.password ? correctUser = true : correctUser = correctUser));
+  userList.forEach((user => user.username == action.username && user.password == action.password ? correctUser = true : correctUser = correctUser));
   if (correctUser) {
     yield put({type: 'AUTHENTICATE_ASYNC', userData: action});
   }
 }
 
 function* registerAsync(action) {
-  let user_list = JSON.parse(localStorage.getItem('user_list'));
-  if (user_list == null) {
-    user_list = [];
-  }
+  let user_list = SyncStorage.get('user_list');
+  let userList = [];
+
+  console.log("register: ");
+  console.log(user_list);
+
+  if (user_list != null && user_list !== undefined)
+    userList = JSON.parse(user_list);
+
   let usernameExists = false;
-  user_list.forEach((user => user.username == action.username ? usernameExists = true : usernameExists = usernameExists));
+  userList.forEach((user => user.username == action.username ? usernameExists = true : usernameExists = usernameExists));
   if (usernameExists) {
     return;
   }
 
-  user_list.push({username: action.username, password: action.password});
-  localStorage.setItem('user_list', JSON.stringify(user_list));
+  userList.push({username: action.username, password: action.password});
+  console.log("new user list: " + userList);
+  SyncStorage.set('user_list', JSON.stringify(userList));
 
   yield put({type: 'AUTHENTICATE_ASYNC', userData: {username: action.username, password: action.password}});
 }
@@ -95,6 +111,8 @@ function reducer(state = initialState, action) {
       return state;
   }
 }
+
+initStorage();
 
 const sagaMiddleware = createSagaMiddleWare();
 const store = createStore(reducer, applyMiddleware(sagaMiddleware));

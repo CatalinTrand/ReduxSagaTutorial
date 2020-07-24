@@ -11,7 +11,7 @@ export const products = [
     name: 'Short Sleeve T-Shirt',
     price: '10.99',
     description: 'This is a product description',
-    reviews: [],
+    reviews: [{username: 'Alex', comment: 'Nu e cine stie ce dar e cat de cat'}],
   },
   {
     id: 2,
@@ -19,7 +19,7 @@ export const products = [
     name: 'Medium Sleeve T-Shirt',
     price: '11.99',
     description: 'This is a product description',
-    reviews: [],
+    reviews: [{username: 'Alex', comment: 'Nu e cine stie ce dar e cat de cat'}],
   },
   {
     id: 3,
@@ -27,7 +27,7 @@ export const products = [
     name: 'Long Sleeve T-Shirt',
     price: '12.99',
     description: 'This is a product description',
-    reviews: [],
+    reviews: [{username: 'Alex', comment: 'Nu e cine stie ce dar e cat de cat'}],
   },
   {
     id: 4,
@@ -35,7 +35,7 @@ export const products = [
     name: 'Nike Trainers',
     price: '120.99',
     description: 'This is a product description',
-    reviews: [],
+    reviews: [{username: 'Alex', comment: 'Nu e cine stie ce dar e cat de cat'}],
   },
   {
     id: 5,
@@ -43,7 +43,7 @@ export const products = [
     name: 'Puma Trainers',
     price: '130.99',
     description: 'This is a product description',
-    reviews: [],
+    reviews: [{username: 'Alex', comment: 'Nu e cine stie ce dar e cat de cat'}],
   },
   {id: 6, category_id: 2, name: 'Sandals', price: '4.99', description: 'This is a product description', reviews: []},
   {
@@ -52,7 +52,7 @@ export const products = [
     name: 'Hat Tall',
     price: '14.99',
     description: 'This is a product description',
-    reviews: [],
+    reviews: [{username: 'Alex', comment: 'Nu e cine stie ce dar e cat de cat'}],
   },
   {
     id: 8,
@@ -60,7 +60,7 @@ export const products = [
     name: 'Hat Grande',
     price: '15.99',
     description: 'This is a product description',
-    reviews: [],
+    reviews: [{username: 'Alex', comment: 'Nu e cine stie ce dar e cat de cat'}],
   },
   {
     id: 9,
@@ -68,6 +68,6 @@ export const products = [
     name: 'Hat Venti',
     price: '16.99',
     description: 'This is a product description',
-    reviews: [],
+    reviews: [{username: 'Alex', comment: 'Nu e cine stie ce dar e cat de cat'}],
   },
 ];
