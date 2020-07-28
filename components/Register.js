@@ -1,67 +1,62 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
 } from 'react-native';
-import {connect} from "react-redux";
+import {connect} from 'react-redux';
 import {Text, TextInput} from 'react-native';
-import styles from "./style";
+import styles from './style';
 import {Button} from 'react-native-elements';
 
-class Register extends React.Component {
+const handleChange = (event = {}, from, data, setData) => {
+  if (from == 'u') {
+    setData({username: event, password: data.password});
+  } else {
+    setData({username: data.username, password: event});
+  }
+};
 
-  constructor(props) {
-    super(props);
-    this.handleChange = this.handleChange.bind(this);
+const onRegisterPress = (data, props) => {
+  props.dispatch({type: 'REGISTER', username: data.username, password: data.password});
+};
 
-    this.state = {
+const onLoginInsteadPress = (props) => {
+  props.dispatch({type: 'LOGIN_INSTEAD'});
+};
+
+function Register(props) {
+
+  const [data, setData] = useState(
+    {
       username: '',
-      password: ''
-    };
-  }
+      password: '',
+    },
+  );
 
-  handleChange(event = {}, from) {
-    if(from == 'u')
-      this.setState({username: event});
-    else
-      this.setState({password: event});
-  }
-
-  onRegisterPress(){
-    this.props.dispatch({type: "REGISTER", username: this.state.username, password: this.state.password});
-  }
-
-  onLoginInsteadPress(){
-    this.props.dispatch({type: "LOGIN_INSTEAD"});
-  }
-
-  render() {
-    return (
-      <View>
-        <TextInput
-          placeholder="Email"
-          placeholderColor="#c4c3cb"
-          style={styles.loginFormTextInput}
-          onChangeText={(e) => this.handleChange(e,'u')}
-          value={this.state.email}
-        />
-        <TextInput
-          placeholder="Password"
-          placeholderColor="#c4c3cb"
-          style={styles.loginFormTextInput}
-          secureTextEntry={true}
-          onChangeText={(e) => this.handleChange(e,'p')}
-          value={this.state.password}
-        />
-        <Button
-          buttonStyle={styles.loginButton}
-          onPress={() => this.onRegisterPress()}
-          title="Register"
-        />
-        <Text onPress={() => this.onLoginInsteadPress()} style={styles.insteadText}>Login instead</Text>
-      </View>
-    );
-  }
-
+  return (
+    <View>
+      <TextInput
+        placeholder="Email"
+        placeholderColor="#c4c3cb"
+        style={styles.loginFormTextInput}
+        onChangeText={(e) => handleChange(e, 'u', data, setData)}
+        value={data.username}
+      />
+      <TextInput
+        placeholder="Password"
+        placeholderColor="#c4c3cb"
+        style={styles.loginFormTextInput}
+        secureTextEntry={true}
+        onChangeText={(e) => handleChange(e, 'p', data, setData)}
+        value={data.password}
+      />
+      <Button
+        buttonStyle={styles.loginButton}
+        onPress={() => onRegisterPress(data, props)}
+        title="Register"
+      />
+      <Text onPress={() => onLoginInsteadPress(props)} style={styles.insteadText}>Login instead</Text>
+    </View>
+  );
 }
 
 export default Register;

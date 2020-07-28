@@ -1,4 +1,4 @@
-const React = require("react-native");
+const React = require('react-native');
 
 const {StyleSheet} = React;
 
@@ -12,13 +12,13 @@ export default {
   },
   logoText: {
     fontSize: 40,
-    fontWeight: "800",
+    fontWeight: '800',
     marginTop: 150,
     marginBottom: 30,
     textAlign: 'center',
   },
   loginFormView: {
-    flex: 1
+    flex: 1,
   },
   loginFormTextInput: {
     height: 43,
@@ -40,27 +40,27 @@ export default {
     height: 45,
     marginTop: 10,
     width: '90%',
-    marginLeft: '5%'
+    marginLeft: '5%',
   },
   fbLoginButton: {
     height: 45,
     marginTop: 10,
     backgroundColor: '#267df1',
     width: '90%',
-    marginLeft: '5%'
+    marginLeft: '5%',
   },
   insteadText: {
     marginTop: 25,
     width: '100%',
     textAlign: 'center',
-    fontSize: 16
+    fontSize: 16,
   },
   tab_nav: {
     width: '100%',
     height: 80,
     marginBottom: 10,
     display: 'flex',
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   nav_btn: {
     width: '50%',
@@ -68,7 +68,7 @@ export default {
     padding: 10,
     border: '2px solid black',
     backgroundColor: 'gray',
-    color: '#2bd6f1'
+    color: '#2bd6f1',
   },
   nav_btn_highlight: {
     width: '50%',
@@ -76,7 +76,7 @@ export default {
     padding: 10,
     border: '2px solid black',
     backgroundColor: '#2bd6f1',
-    color: 'black'
+    color: 'black',
   },
   nav_btn_text: {
     fontSize: 22,
@@ -85,59 +85,59 @@ export default {
   },
   list_header: {
     fontWeight: 700,
-    fontSize: 20
+    fontSize: 20,
   },
   list_item: {
     paddingLeft: 30,
-    fontWeight: 400
+    fontWeight: 400,
   },
   product_title: {
     padding: 10,
     paddingBottom: 0,
     marginTop: 20,
-    fontSize: 24
+    fontSize: 24,
   },
   product_price: {
     fontWeight: 'bold',
     padding: 10,
     paddingTop: 0,
-    fontSize: 20
+    fontSize: 20,
   },
   product_description: {
     padding: 10,
     marginBottom: 20,
-    fontSize: 18
+    fontSize: 18,
   },
   profile_text: {
     fontSize: 22,
     paddingLeft: 15,
-    paddingBottom: 10
+    paddingBottom: 10,
   },
   reviews_title: {
     fontSize: 20,
-    paddingLeft: 10
+    paddingLeft: 10,
   },
   reviews_box: {
     borderTopColor: 'black',
     borderTopWidth: 1,
-    marginTop: 10
+    marginTop: 10,
   },
   review: {
     padding: 10,
     borderBottomColor: 'black',
     borderBottomWidth: 1,
-    marginBottom: 10
+    marginBottom: 10,
   },
   review_name: {
     fontSize: 20,
-    fontStyle: 'italic'
+    fontStyle: 'italic',
   },
   review_comment: {
-    fontSize: 18
+    fontSize: 18,
   },
   review_btn: {
     paddingLeft: 10,
     marginBottom: 20,
-    width: 200
-  }
+    width: 200,
+  },
 };

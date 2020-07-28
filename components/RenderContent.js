@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
 } from 'react-native';
@@ -8,23 +8,19 @@ import Register from './Register';
 import Dashboard from './Dashboard';
 import ProductDetails from './ProductDetails';
 
-class RenderContent extends React.Component {
-
-  render() {
-    switch (this.props.screen) {
+function RenderContent (props) {
+    switch (props.screen) {
       case 0:
-        return <Login dispatch={this.props.dispatch} />;
+        return <Login dispatch={props.dispatch} />;
       case 1:
-        return <Register dispatch={this.props.dispatch} />;
+        return <Register dispatch={props.dispatch} />;
       case 2:
-        return <Dashboard dispatch={this.props.dispatch} userData={this.props.userData} categories={this.props.categories} products={this.props.products}/>;
+        return <Dashboard dispatch={props.dispatch} userData={props.userData} categories={props.categories} products={props.products}/>;
       case 3:
-        return <ProductDetails dispatch={this.props.dispatch} userData={this.props.userData} shownProduct={this.props.shownProduct} />;
+        return <ProductDetails dispatch={props.dispatch} userData={props.userData} shownProduct={props.shownProduct} />;
       default:
-        return <Login dispatch={this.props.dispatch} />;
+        return <Login dispatch={props.dispatch} />;
     }
-  }
-
 }
 
 const mapStateToProps = state => ({

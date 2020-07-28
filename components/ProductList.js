@@ -1,41 +1,36 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { List } from 'react-native-paper';
 import {ScrollView, View} from 'react-native';
 import styles from "./style";
 
-class ProductList extends React.Component {
+const handlePress = (id, data, setData) => {
+  data.expanded[id] = !data.expanded[id];
+  setData({expanded: data.expanded});
+};
 
-  constructor(props){
-    super(props);
+function ProductList(props) {
 
-    this.state = {
-      expanded: []
-    };
-  }
+  const [data, setData] = useState(
+    {
+      expanded: props.categories.map( category => false )
+    }
+  );
 
-  componentDidMount(){
-    this.state.expanded = this.props.categories.map( category => false );
-  }
+  console.log(data);
 
-  handlePress(id){
-    this.state.expanded[id] = !this.state.expanded[id];
-    this.forceUpdate();
-  }
-
-  render(){
-    return (
+  return (
       <ScrollView>
         {
-          this.props.categories.map(
+          props.categories.map(
             (category, idx) =>
               <View key={idx+1}>
                 <List.Accordion style={ styles.list_header }
                   title={category.name}
-                  expanded={this.state.expanded[idx]}
-                  onPress={(e) => this.handlePress(idx)}>
+                  expanded={data.expanded[idx]}
+                  onPress={(e) => handlePress(idx, data, setData)}>
                   {
-                    this.props.products.map(
-                      (product, idx) => product.category_id == category.id ? <List.Item key={idx+1} style={ styles.list_item }title={product.name} onPress={(e) => this.props.dispatch({type: "DISPLAY_PRODUCT", shownProduct: product}) }/> : null
+                    props.products.map(
+                      (product, idx) => product.category_id == category.id ? <List.Item key={idx+1} style={ styles.list_item } title={product.name} onPress={(e) => props.dispatch({type: "DISPLAY_PRODUCT", shownProduct: product}) }/> : null
                     )
                   }
                 </List.Accordion>
@@ -44,7 +39,6 @@ class ProductList extends React.Component {
         }
       </ScrollView>
     );
-  }
 }
 
 export default ProductList;

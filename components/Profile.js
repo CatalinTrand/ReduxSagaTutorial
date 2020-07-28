@@ -1,17 +1,14 @@
 import React from 'react';
 import {Text, View} from 'react-native';
-import styles from "./style";
+import styles from './style';
 
-class Profile extends React.Component {
-
-  render(){
-    return (
-      <View>
-        <Text style={styles.profile_text}>Username: {this.props.userData.username}</Text>
-        <Text style={styles.profile_text}>Password: {this.props.userData.password}</Text>
-      </View>
-    );
-  }
+function Profile(props) {
+  return (
+    <View>
+      <Text style={styles.profile_text}>Username: {props.userData.username}</Text>
+      <Text style={styles.profile_text}>Password: {props.userData.password}</Text>
+    </View>
+  );
 }
 
 export default Profile;
